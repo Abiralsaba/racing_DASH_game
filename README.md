@@ -1,150 +1,64 @@
-#PLAY racing_DASH_game : https://abiralsaba.github.io/racing_DASH_game/
+# 🚗 Escape Road - Unity 2D Edition
+
+[![Unity](https://img.shields.io/badge/Unity-2021%2B-black?style=flat&logo=unity)](https://unity.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build](https://img.shields.io/badge/Build-WebGL%20%7C%20Android%20%7C%20PC-blue)](https://abiralsaba.github.io/racing_DASH_game/)
+[![Developer](https://img.shields.io/badge/Dev-@abiralsaba-red)](https://github.com/abiralsaba)
+
+> **"Escape Road"** is a high-performance 2D endless runner engineered with custom C# logic and a lightweight sprite-rendering pipeline. Designed to be fast, addictive, and unforgiving.
+
+### 🎮 [PLAY NOW (Live Demo)](https://abiralsaba.github.io/racing_DASH_game/)
+
+---
+
+## 📖 About The Project
+
+**Escape Road** is a technical showcase of 2D game development in Unity. It utilizes the Universal Render Pipeline (URP) or Default 2D renderer to deliver smooth performance across WebGL, Android, and Desktop platforms. The game features a progressively increasing difficulty curve, physics-based movement, and a modular power-up system.
+
+### Key Features
+* **Infinite Scaling Difficulty:** Obstacle spawn rates decrease and speed increases over time.
+* **Physics-Based Controls:** Finely tuned gravity (Scale 3-5) and impulse-based jumping.
+* **Object Pooling:** Optimized performance for mobile and web.
+* **Persistent Data:** High scores saved via `PlayerPrefs`.
+
+---
+
+## 🛠️ Technical Architecture
+
+This project follows a modular C# script system where logic is decoupled for easier maintenance.
+
+### Core Components
+| Script | Responsibility |
+| :--- | :--- |
+| `PlayerController.cs` | Handles physics, Raycast ground checks, jumping, and animation states. |
+| `ObstacleSpawner.cs` | Manages infinite object pooling and generation logic. |
+| `Obstacle.cs` | Controls world-based movement and dynamic speed increments. |
+| `PowerUpManager.cs` | Coroutine-based spawner for random power-ups. |
+| `GameManager.cs` | The central brain handling scoring, UI updates, and game state flow. |
+| `DataManager.cs` | Handles serialization of High Scores and settings. |
+
+### Physics Logic Snippet
+The jump mechanic uses `Rigidbody2D` with immediate impulse force, gated by a Raycast ground check to prevent double jumping (unless modified by power-ups).
 
 
-🎬 DOCUMENTARY: THE MAKING OF “ESCAPE ROAD” – UNITY 2D EDITION
-Created, Designed & Engineered by @abiralsaba
-🟢 CHAPTER 1: THE ARCHITECTURE
 
-"Escape Road" is a 2D Unity endless-runner developed with high-performance physics, custom C# logic, and a lightweight sprite-rendering pipeline.
-
-1. Unity Engine Core
-
-Unity Version: 2021–2023 LTS (2D Template)
-
-Renderer: Default 2D / URP
-
-Physics Engine: Rigidbody2D + BoxCollider2D
-
-UI: Unity Canvas + TextMeshPro
-
-Build Platforms: Windows, WebGL, Android, macOS
-
-2. Scene Structure
-
-MainMenu – Game title, Start button, High Score
-GameScene – Full gameplay
-GameOver – Final score, Retry, Save high score
-
-3. Modular C# Script System
-Script	Function
-PlayerController.cs	Movement, jump, animation
-ObstacleSpawner.cs	Infinite obstacle spawning
-Obstacle.cs	Movement + speed increase
-PowerUpManager.cs	Random power-up spawning
-GameManager.cs	Score system, UI, game flow
-DataManager.cs	Save + load high score
-
-Unity handles animation clips, sprite slicing, physics simulation, and scene transitions while all logic is engineered by @abiralsaba.
-
-🟡 CHAPTER 2: GAME MECHANICS
-
-Escape Road is designed to be fast, addictive, and unforgiving — with difficulty that grows infinitely.
-
-1. Player Physics & Movement
-
-Gravity Scale: 3–5
-
-Jump Force: 12–15
-
-Ground Check: Raycast on Layer “Ground”
-
-Jump Logic Concept:
-
-if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+}
+🎨 Visual Identity
+The game utilizes a "Dark & Gold" aesthetic for high contrast and readability.
+• UI Style: Gold-accented text (#FAD234) on dark backgrounds using TextMeshPro.
+• Environment: Parallax sky (#87CEEB) and ground layers (#6B5E54).
+• Performance: Sprite Atlases are used to reduce draw calls, ensuring 60+ FPS on low-end devices.
+Installation & Development
+git clone [https://github.com/abiralsaba/racing_DASH_game.git](https://github.com/abiralsaba/racing_DASH_game.git)
 
-2. Obstacle Mechanics
-
-Spawn Interval: Starts at 1.2s → decreases over time
-
-Speed: Starts at 6 → increases gradually
-
-All obstacles generated from prefabs
-
-Movement is world-based; the player doesn’t move horizontally
-
-3. Power-Up System
-
-Spawns every 5 seconds using a Coroutine.
-
-Power-Up	Color	Effect
-Score Multiplier	🟡 #FFD700	2× score for 5 seconds
-Shield	🔵 #00BFFF	Survive one collision
-High Jump	🟢 #32CD32	Boosts jump force
-Slow Time	🟣 #8A2BE2	Halves obstacle speed
-
-Each is a prefab with its own icon, glow effect, and timer logic.
-
-🔴 CHAPTER 3: VISUAL IDENTITY & RECREATED CONCEPT SHOTS
-EXHIBIT A — LOADING / START SCREEN
-+--------------------------------------------------+
-|                 ESCAPE ROAD                      |
-|                    by @abiralsaba                |
-|                                                  |
-|                [   LOADING 75%   ]               |
-|     ---------------------------------------      |
-|     |###################################   |     |
-|     ---------------------------------------      |
-+--------------------------------------------------+
-
-
-Gold-accented UI (#FAD234) on a dark-themed background, rendered with Unity Canvas.
-
-EXHIBIT B — IN-GAME SNAPSHOT
-+--------------------------------------------------+
-| Score: 1450               High Score: 5000       |
-|           [ MULTIPLIER x2 ACTIVE ]               |
-|                                                  |
-|  (Sky: #87CEEB)                                  |
-|                                                  |
-|      [ BLUE PLAYER ]     [POWER-UP VIOLET]       |
-|         [##]                                          |
-|         [##]~~~(Shield Glow)   [ RED OBSTACLE ]      |
-|______________________________________________________|
-| (Ground: #6B5E54)                                    |
-+------------------------------------------------------+
-
-
-Sprites, parallax layers, obstacle prefabs, and power-up effects are rendered in Unity’s 2D pipeline.
-
-🔵 CHAPTER 4: PERFORMANCE, BUILD & SECURITY
-1. Build Optimization
-
-Sprite Atlas for draw-call reduction
-
-Object pooling for obstacles
-
-Lightweight 2D particles
-
-Adaptive quality for mobile
-
-2. Save System
-
-Escape Road uses Unity PlayerPrefs to store:
-
-High Score
-
-Last Score
-
-Audio/FX settings
-
-3. Distribution
-
-Supported platforms:
-
-Windows EXE
-
-WebGL
-
-Android APK
-
-macOS .app
-
-🏁 CREDITS
-Role	Contributor
-Creator	@abiralsaba
-Lead Developer	@abiralsaba
-Gameplay Designer	@abiralsaba
-C# Programmer	@abiralsaba
-Art Direction	@abiralsaba
-Documentation	Generated based on the instructions of @abiralsaba
+Open in Unity: Add the folder to Unity Hub and open.
+🏁 Credits
+This entire project was created, designed, and engineered by @abiralsaba.
+• Lead Developer: @abiralsaba
+• Gameplay Designer: @abiralsaba
+• C# Programmer: @abiralsaba
+• Art Direction: @abiralsaba
+📄 License
+Distributed under the MIT License. See LICENSE for more information.
