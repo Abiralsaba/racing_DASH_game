@@ -5,7 +5,7 @@
 [![Build](https://img.shields.io/badge/Build-WebGL%20%7C%20Android%20%7C%20PC-blue)](https://abiralsaba.github.io/racing_DASH_game/)
 [![Developer](https://img.shields.io/badge/Dev-@abiralsaba-red)](https://github.com/abiralsaba)
 
-> **"Escape Road"** is a high-performance 2D endless runner engineered with custom C# logic and a lightweight sprite-rendering pipeline. Designed to be fast, addictive, and unforgiving.
+> **"Escape Road"** is a high-performance 2D endless runner engineered with custom C#,JS  logic and a lightweight sprite-rendering pipeline. Designed to be fast, addictive, and unforgiving.
 
 ### 🎮 [PLAY NOW (Live Demo)](https://abiralsaba.github.io/racing_DASH_game/)
 
